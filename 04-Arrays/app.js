@@ -122,11 +122,34 @@ const people = [
   'Biondo, Frank'
 ];
 
+// For displaying the problem and solutions involving the inventers array
+const displayArrObj = (arr, question) => {
+  arr.forEach((element) => {
+    let row = '<tr>';
+    for (const key in element) {
+      if (Object.hasOwnProperty.call(element, key)) {
+        const value = element[key];
+        row += '<td>' + value + '</td>';
+      }
+    }
+    row += '</tr>';
+    document.querySelector(`tbody#${question}`).innerHTML += row;
+  });
+};
+
+displayArrObj(inventors, 'original');
+
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
+const inventors1500 = inventors.filter(
+  (person) => person.year >= 1500 && person.year <= 1599
+);
+
+displayArrObj(inventors1500, 'Q1');
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
+
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
