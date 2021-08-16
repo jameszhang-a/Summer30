@@ -13,6 +13,14 @@ table {
   width: 100%;
 }
 
+.array {
+  width: 40%;
+}
+
+.array td {
+  text-align: center;
+}
+
 #header {
   background-color: #dddddd;
   font-weight: bold;

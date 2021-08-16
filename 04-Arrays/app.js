@@ -137,6 +137,17 @@ const displayArrObj = (arr, question) => {
   });
 };
 
+const displayArr = (arr, question) => {
+  let row = '';
+  arr.map((item) => {
+    row += '<tr>';
+    row += '<td>' + item + '</td>';
+    row += '</tr>';
+    console.log(row);
+  });
+  document.querySelector(`tbody#${question}`).innerHTML += row;
+};
+
 displayArrObj(inventors, 'original');
 
 // Array.prototype.filter()
@@ -149,7 +160,11 @@ displayArrObj(inventors1500, 'Q1');
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
+const inventorNamesFull = inventors.map((inventor) => {
+  return `${inventor.first} ${inventor.last}`;
+});
 
+displayArr(inventorNamesFull, 'Q2');
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
