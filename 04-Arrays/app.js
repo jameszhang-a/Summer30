@@ -124,13 +124,12 @@ const people = [
 
 // For displaying the problem and solutions involving the inventers array
 const displayArrObj = (arr, question) => {
+  // For each small object
   arr.forEach((element) => {
     let row = '<tr>';
     for (const key in element) {
-      if (Object.hasOwnProperty.call(element, key)) {
-        const value = element[key];
-        row += '<td>' + value + '</td>';
-      }
+      const value = element[key];
+      row += '<td>' + value + '</td>';
     }
     row += '</tr>';
     document.querySelector(`tbody#${question}`).innerHTML += row;
@@ -186,10 +185,22 @@ const sortedByAge = inventors.sort((a, b) => {
 displayArrObj(sortedByAge, 'Q5');
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-// https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+/*
+const url = 'https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris';
+const list = document.querySelector('.mw-category');
+const names = Array.from(list.querySelectorAll('a'));
+
+// Flatmap adds the return value to a new array, flattens by removing empty []
+const de = names.flatMap(
+  (name) => (name.innerText.includes('de') ? name.innerText : [])
+);
+*/
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
+const sortedLastName = people.sort((a, b) => a.localeCompare(b));
+console.log(sortedLastName);
+displayArr(sortedLastName, 'Q7');
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
@@ -209,3 +220,19 @@ const data = [
   'car',
   'truck'
 ];
+
+const occur = data.reduce((sum, curr) => {
+  if (!(curr in sum)) sum[curr] = 0;
+  sum[curr] += 1;
+  return sum;
+}, {});
+
+// Append each item and occurance to the table
+for (item in occur) {
+  let row = '<tr>';
+  row = row + '<td>' + item + '</td>';
+  row = row + '<td>' + occur[item] + '</td>';
+  row += '</tr';
+
+  document.querySelector('tbody#Q8').innerHTML += row;
+}
